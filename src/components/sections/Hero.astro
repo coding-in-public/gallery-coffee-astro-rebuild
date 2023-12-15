@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+
+import heroImage from "@/assets/hero.jpg";
+---
+
+<section aria-label="Hero Section">
+  <Image
+    src={heroImage}
+    alt="shop storefront"
+    width="1200"
+    format="avif"
+    class="hero-image"
+  />
+  <div class="grid--md">
+    <div class="grid--xs">
+      <h1>Gallery Coffee Roasters</h1>
+      <small>Simple. Sustainable. Quality.</small>
+    </div>
+    <p>Small batch coffee roasted fresh for Coffee Lovers & Wholesale</p>
+  </div>
+</section>
+
+<style>
+  h1 {
+    line-height: 1.1;
+  }
+  .grid--md {
+    grid-area: 3 / 1 / 4 / -1;
+    margin-inline: var(--size-fluid-2);
+    background-color: #fff;
+    padding: var(--size-fluid-2);
+    border-radius: var(--radius-1);
+  }
+  section {
+    display: grid;
+    max-height: 600px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .hero-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    grid-area: 1 / 1 / -1 / -1;
+  }
+
+  @media screen and (min-width: 680px) {
+    .grid--md {
+      grid-area: 2 / 3 / 3 / -1;
+      padding-inline-start: var(--size-fluid-4);
+      margin-inline: 0;
+    }
+  }
+</style>

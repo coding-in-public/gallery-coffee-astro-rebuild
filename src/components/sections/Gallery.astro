@@ -1,0 +1,83 @@
+---
+import { Image } from "astro:assets";
+
+import Heading from "../Heading.astro";
+
+import gallery1 from "@/assets/gallery_1.jpeg";
+import gallery2 from "@/assets/gallery_2.jpeg";
+import gallery3 from "@/assets/gallery_3.jpeg";
+import gallery4 from "@/assets/gallery_4.jpeg";
+import gallery5 from "@/assets/gallery_5.jpeg";
+import gallery6 from "@/assets/gallery_6.jpeg";
+import gallery7 from "@/assets/gallery_7.jpeg";
+import gallery8 from "@/assets/gallery_8.jpeg";
+import gallery9 from "@/assets/gallery_9.jpeg";
+
+const images = [
+  {
+    image: gallery1,
+  },
+  {
+    image: gallery2,
+  },
+  {
+    image: gallery3,
+  },
+  {
+    image: gallery4,
+  },
+  {
+    image: gallery5,
+  },
+  {
+    image: gallery6,
+  },
+  {
+    image: gallery7,
+  },
+  {
+    image: gallery8,
+  },
+  {
+    image: gallery9,
+  },
+];
+---
+
+<section aria-label="Gallery" class="grid--md">
+  <div>
+    <Heading tagType="h2">Keep up with us!</Heading>
+    <a href="#">@gallerycoffees</a>
+  </div>
+  <div class="product-wrapper">
+    {
+      images.map((i) => (
+        <Image
+          src={i.image}
+          alt="coffee stuff"
+          format="avif"
+          width="300"
+          class="product"
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .product-wrapper {
+    display: flex;
+    gap: var(--size-fluid-4);
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  article {
+    flex-basis: 300px;
+  }
+
+  .product {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+</style>

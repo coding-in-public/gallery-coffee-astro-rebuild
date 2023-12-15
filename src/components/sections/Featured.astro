@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+
+import Heading from "../Heading.astro";
+
+import colomia from "@/assets/coffee_colomia.jpg";
+import ethopia from "@/assets/coffee_ethopia.jpg";
+import golden from "@/assets/coffee_golden-jack.jpg";
+import Link from "../Link.astro";
+
+const coffees = [
+  {
+    name: "Decaf Colombia Galeras",
+    price: 20,
+    image: colomia,
+  },
+  {
+    name: "Ethiopia Tore #3",
+    price: 20,
+    image: ethopia,
+  },
+  {
+    name: "Golden Jack Espresso Blend",
+    price: 20,
+    image: golden,
+  },
+];
+---
+
+<section aria-label="Featured Products" class="grid--md">
+  <div>
+    <Heading tagType="h2">Featured Products</Heading>
+    <p>Buy our coffee</p>
+  </div>
+  <div class="product-wrapper">
+    {
+      coffees.map((c) => (
+        <article class="grid--md">
+          <div class="grid--sm">
+            <Image
+              src={c.image}
+              alt={c.name}
+              format="avif"
+              width="300"
+              class="product"
+            />
+            <Heading tagType="h3">{c.name}</Heading>
+            <p>
+              from
+              {c.price.toLocaleString("en-us", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </p>
+          </div>
+          <Link href="#">Add to Cart</Link>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .product-wrapper {
+    display: flex;
+    gap: var(--size-fluid-4);
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  article {
+    flex-basis: 300px;
+  }
+
+  .product {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+</style>

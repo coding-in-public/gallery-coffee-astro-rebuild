@@ -1,0 +1,17 @@
+---
+const { href, ...rest } = Astro.props;
+---
+
+<a href={href} {...rest}>
+  <slot />
+</a>
+
+<style>
+  a {
+    display: block;
+    max-width: fit-content;
+    background-color: var(--clr-text);
+    color: white;
+    padding: var(--size-3) var(--size-5);
+  }
+</style>

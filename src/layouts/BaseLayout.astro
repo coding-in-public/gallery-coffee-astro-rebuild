@@ -1,0 +1,41 @@
+---
+// components
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+// styles
+import "../styles/main.css";
+
+import { siteData } from "../data/siteData";
+
+const { title = siteData.name } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    <Footer />
+  </body>
+
+  <style>
+    body {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+    }
+  </style>
+</html>

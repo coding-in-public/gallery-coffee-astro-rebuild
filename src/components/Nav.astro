@@ -1,0 +1,98 @@
+---
+// images/icons
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+
+// data
+import { navData } from "../data/siteData";
+
+import logomark from "../assets/logomark.png";
+---
+
+<nav>
+  <ul>
+    {
+      navData.map((i) => (
+        <li>
+          {i.name === "home" ? (
+            <a href={i.href} aria-label="Go Home">
+              <Image
+                alt=""
+                src={logomark}
+                width="80"
+                format="avif"
+                aria-hidden="true"
+                style="flex-shrink: 0"
+              />
+            </a>
+          ) : (
+            <a href={i.href} data-noMobile>
+              {i.name}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+  <button id="mobile-nav-btn" aria-label="Open mobile nav">
+    <Icon name="ri:menu-fill" width="30" alt="" aria-hidden="true" />
+  </button>
+  <p id="mobile-nav">yo</p>
+</nav>
+
+<style>
+  #mobile-nav-btn {
+    display: none;
+  }
+  #mobile-nav {
+    display: none;
+  }
+  button {
+    background: none;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--size-2);
+    padding: 0;
+  }
+  [data-noMobile] {
+    display: none;
+  }
+  [aria-label="Go Home"] {
+    margin-inline: 2rem;
+  }
+  li {
+    font-size: var(--font-size-0);
+    text-transform: uppercase;
+    letter-spacing: var(--font-letterspacing-2);
+  }
+
+  a {
+    color: var(--clr-text);
+    text-decoration: none;
+  }
+  @media screen and (min-width: 680px) {
+    [data-noMobile] {
+      display: block;
+    }
+    ul {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  const mobileNavBtn = document.querySelector("#mobile-nav-btn");
+  const mobileNav = document.querySelector(
+    "#mobile-nav"
+  ) as HTMLParagraphElement;
+
+  mobileNavBtn?.addEventListener("click", (e) => {
+    mobileNav.style.display = "block";
+  });
+</script>

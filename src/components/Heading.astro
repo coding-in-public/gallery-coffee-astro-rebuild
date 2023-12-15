@@ -1,0 +1,15 @@
+---
+const { tagType, ...rest } = Astro.props;
+
+const Tag = tagType;
+---
+
+<Tag {...rest} class="default">
+  <slot />
+</Tag>
+
+<style>
+  .default {
+    line-height: 1.1;
+  }
+</style>

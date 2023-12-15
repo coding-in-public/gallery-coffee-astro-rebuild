@@ -1,0 +1,37 @@
+---
+import { socials } from "@/data/siteData";
+
+import { Icon } from "astro-icon";
+---
+
+<footer>
+  <p>420 1st St. Woodland, Ca 95695</p>
+  <ul>
+    {
+      socials.map((s) => (
+        <li>
+          <a href={s.href} aria-label={s.label} title={s.label}>
+            <Icon name={s.icon} width="24" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--size-2) var(--size-fluid-2);
+  }
+  ul {
+    display: flex;
+    list-style: none;
+    gap: var(--size-2);
+  }
+  a {
+    color: var(--clr-text);
+  }
+</style>
